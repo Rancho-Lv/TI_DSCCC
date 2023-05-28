@@ -1,0 +1,19 @@
+注意：需要引用<stdio.h>，并且在keil5中勾选USB MicroLib
+/* USER CODE BEGIN Includes */
+#include <stdio.h>
+/* USER CODE END Includes */
+
+/* USER CODE BEGIN 0 */
+int fputc(int ch, FILE *f){
+ uint8_t temp[1] = {ch};
+ HAL_UART_Transmit(&huart1, temp, 1, 0xffff);
+return ch;
+}
+
+int fgetc(FILE * f)
+{
+  uint8_t ch = 0;
+  HAL_UART_Receive(&huart1,&ch, 1, 0xffff);
+  return ch;
+}
+/* USER CODE END 0 */
